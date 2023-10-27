@@ -16,11 +16,25 @@ export default function QRCodeGenerator({ text }) {
       a.click();
     }
   };
+
+  const goBackHome = () => {
+    return window.location.href='/home'
+  }
   
   return (
     <div className='qr-code__contianer' ref={qrCodeRef}>
-      <QRCode size={200} value={text} />
-      <button className="btn" onClick={handleSaveClick}>Save</button>
+      <div className='qr-code'>
+        <QRCode 
+          bgColor='#4378e9'
+          fgColor='white'
+          size={170} 
+          value={text}
+         />
+      </div>
+      <div className='qr-code__btns'>
+        <button className='btn btn-genet' onClick={goBackHome}>Go Back</button>
+        <button className="btn btn-genet" onClick={handleSaveClick}>Save</button>
+      </div>
     </div>
   );
 }

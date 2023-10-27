@@ -31,8 +31,9 @@
   -webkit-text-size-adjust: 100%;
 
   /* color */
+  --clr-dark: black;
   --clr-light: #fffffe;
-  --clr-primary: aliceblue;
+  --clr-primary: hsl(212, 45%, 89%);
   --clr-secondary: rgb(84, 84, 105);
   --clr-tertiary: hsla(238, 46%, 23%, 1);
   --clr-rose: rgb(240, 54, 54);
@@ -58,7 +59,11 @@
 
 body {
   width: 100%;
-  height: 100%;
+  height: 100dvh;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--clr-primary);
 }
 

@@ -2,9 +2,6 @@ import React, { useEffect } from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../assets/cameraAppAnimation.json';
 
-// import QRCodeGenerator from '../components/QRCodeGenerator.jsx';
-// import QRCodeScanner from '../components/QRCodeScanner.jsx';
-
 import '../App.css';
 
 export default function App() {  
@@ -14,8 +11,8 @@ export default function App() {
       <i className='app__onomatopoeia'>* snap, click, shutter *</i>
       <h1 className='app__title'>Ready, set... Smile</h1>
       <div className='app__btnContainer'>
-        <a className='btn' href="/qr-generator">QR Generator</a>
-        <a className='btn' href="/qr-scanner">QR Scanner</a>
+        <a className='btn btn-home' href="/qr-generator">QR Generator</a>
+        <a className='btn btn-home' href="/qr-scanner">QR Scanner</a>
       </div>
     </div>
   );
