@@ -34,6 +34,7 @@ const QrScanner = forwardRef((props, ref) => {
   
       fetchData();
     }, []);
+  }
 
   const goBackHome = () => {
     return window.location.href='/home'
@@ -106,6 +107,6 @@ const QrScanner = forwardRef((props, ref) => {
       )}
     </>
   );
-};
+});
 
 export default QrScanner;
