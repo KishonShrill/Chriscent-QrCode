@@ -26,7 +26,7 @@ export default function QRCodeGenerator({ text }) {
       <div className='qr-code'>
         <QRCode 
           bgColor='#4378e9'
-          fgColor='white'
+          fgColor='black'
           size={170} 
           value={text}
          />

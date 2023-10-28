@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { fetchEntities } from './api.jsx'; // Adjust the import path as needed
-import './entities.css';
+import axios from 'axios';
+import React, { useRef, useState, forwardRef, useEffect } from 'react';
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 const EntityProfile = () => {
   const [entities, setEntities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const ENTITITY_API_URL = 'http://localhost:5000/api/entities'; // Update the URL if needed
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchEntity = async () => {
       try {
-        const fetchedEntities = await fetchEntities();
+        const response = await axios.get(ENTITITY_API_URL);
+        const fetchedEntities = response.data;
         setEntities(fetchedEntities);
         setLoading(false);
       } catch (error) {
@@ -17,8 +19,10 @@ const EntityProfile = () => {
       }
     };
 
-    fetchData();
-  }, []);
+    fetchEntity();
+  });
+
+  const desiredEntity = entities.find(entity => entity.id === "2022-0362");
 
   return (
     <div className='container__list' >
@@ -27,11 +31,9 @@ const EntityProfile = () => {
         <p>Loading Entities...</p>
       ) : (
         <ul>
-          {entities.map((entity) => (
-            <li key={entity.id}>
-              {product.name} - ${product.price}
-            </li>
-          ))}
+          <li>
+            {desiredEntity.name} - ${desiredEntity.id}
+          </li>
         </ul>
       )}
     </div>

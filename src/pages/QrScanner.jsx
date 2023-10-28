@@ -1,11 +1,16 @@
+import axios from 'axios';
 import React, { useRef, useState, forwardRef, useEffect } from 'react';
 import { QrReader } from 'react-qr-reader';
+import EntityProfile from '../api/Entities';
 import '../styles/QRCodeScanner.css';
 
 const QrScanner = forwardRef((props, ref) => {
   const [data, setData] = useState('No result');
   const [scanning, setScanning] = useState(false);
+  const [entities, setEntities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  const ENTITITY_API_URL = 'http://localhost:5000/api/entities'; // Update the URL if needed
   const initialFacing = localStorage.getItem('facing') || 'environment';
   const [facing, setFacing] = useState(initialFacing); // 'user' or 'environment'
   const videoRef = ref || useRef(null);
@@ -17,34 +22,25 @@ const QrScanner = forwardRef((props, ref) => {
     window.location.reload();
   };
 
-  const EntityProfile = () => {
-    const [entities, setEntities] = useState([]);
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const fetchedEntities = await fetchEntities();
-          setEntities(fetchedEntities);
-          setLoading(false);
-        } catch (error) {
-          console.error('Error fetching entities:', error);
-        }
-      };
-  
-      fetchData();
-    }, []);
-  }
+  const goBackHome = () => {return window.location.href='/home'}
+  const scanQRCode = () => {setScanning(!scanning);}
 
-  const goBackHome = () => {
-    return window.location.href='/home'
-  }
+  useEffect(() => {
+    const fetchEntity = async () => {
+      try {
+        const response = await axios.get(ENTITITY_API_URL);
+        const fetchedEntities = response.data;
+        setEntities(fetchedEntities);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching entities:', error);
+      }
+    };
 
-  const scanQRCode = () => {
-    setScanning(!scanning);
+    fetchEntity();
+  });
 
-    useEffect
-  }
+  const desiredEntity = entities.find(entity => entity.id === data);
 
   return (
     <>
@@ -80,27 +76,27 @@ const QrScanner = forwardRef((props, ref) => {
         </>
       ) : (
         <>
-          <img className="result__img" src="" alt="" />
+          <img className="result__img" src="{desiredEntity.image}" alt="" />
           <div className='result__container'>
             <fieldset>
               <legend><span>Name:</span></legend>
-              <p>{data}</p>
+              <p>{desiredEntity.name}</p>
             </fieldset>
             <fieldset>
               <legend><span>Bio:</span></legend>
-              <p>{data}</p>
+              <p>{desiredEntity.bio}</p>
             </fieldset>
             <fieldset>
               <legend><span>Likes:</span></legend>
-              <p>{data}</p>
+              <p>{desiredEntity.likes}</p>
             </fieldset>
             <fieldset>
               <legend><span>Dislikes:</span></legend>
-              <p>{data}</p>
+              <p>{desiredEntity.dislikes}</p>
             </fieldset>
             <fieldset>
               <legend><span>Name:</span></legend>
-              <p>{data}</p>
+              <p>{desiredEntity.image}</p>
             </fieldset>
           </div>
         </>

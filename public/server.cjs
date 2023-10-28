@@ -20,7 +20,8 @@ mongoose.connect(uri, {
 });
 
 // Define the product schema
-const entitiesSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
+  id: String,
   name: String,
   bio: String,
   likes: Array,
@@ -28,7 +29,7 @@ const entitiesSchema = new mongoose.Schema({
   image: String,
 });
 
-const Entities = mongoose.model('Entities', entitiesSchema);
+const Entity = mongoose.model('Entities', productSchema);
 
 // Allow CORS connection to localhost::dev & localshot::preview
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:4173'];
@@ -46,10 +47,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Define a route to fetch entities
+// Define a route to fetch products
 app.get('/api/entities', async (req, res) => {
   try {
-    const entities = await Entities.find();
+    const entities = await Entity.find();
     res.json(entities);
   } catch (error) {
     res.status(500).json({ message: error.message });
