@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 
 const app = express();
+
+
+
 const PORT = process.env.PORT || 5000; // Choose your desired port
 
 // Connect to MondoDB Atlas
@@ -32,7 +35,7 @@ const productSchema = new mongoose.Schema({
 const Entity = mongoose.model('Entities', productSchema);
 
 // Allow CORS connection to localhost::dev & localshot::preview
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:4173'];
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:4173', 'https://chriscent-qr-code.vercel.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -43,8 +46,9 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  methods: ["POST", "GET"],
+  credentials: true
 };
-
 app.use(cors(corsOptions));
 
 // Define a route to fetch products
