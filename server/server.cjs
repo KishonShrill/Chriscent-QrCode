@@ -5,14 +5,8 @@ const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT || 5000; // Choose your desired port
 
-// Connect to MondoDB Atlas
-const username = encodeURIComponent("public_user");
-const password = encodeURIComponent("chriscentproductions_public");
-const cluster = "chirscentportfolio.qj3tx5b.mongodb.net";
-const collection = "MSUIIT";
-
 // MongoDB Atlas URL
-let uri = `mongodb+srv://${username}:${password}@${cluster}/${collection}?retryWrites=true&w=majority`; // Replace with your MongoDB Atlas connection string
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -32,17 +26,9 @@ const productSchema = new mongoose.Schema({
 const Entity = mongoose.model('Entities', productSchema);
 
 // Allow CORS connection to localhost::dev & localshot::preview
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:4173', 'https://chriscent-qr-code.vercel.app'];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Check if the origin is in the allowed origins list
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true,
   methods: ["POST", "GET"],
   credentials: true
 };
