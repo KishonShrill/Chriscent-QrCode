@@ -3,14 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "server.cjs",
   "scripts": {
     "dev": "vite",
-    "publicdev": "concurrently \"vite --host\" \"node dist/server.cjs\"",
-    "start": "node public/server.cjs",
+    "start": "node server.cjs",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "concurrently \"vite preview\" \"node dist/server.cjs\"",
-    "publicpreview": "concurrently \"vite preview --host\" \"node dist/server.cjs\""
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.5.1",
