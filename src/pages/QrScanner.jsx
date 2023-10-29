@@ -42,67 +42,85 @@ const QrScanner = forwardRef((props, ref) => {
 
   const desiredEntity = entities.find(entity => entity.id === data);
 
-  return (
-    <>
-      {!scanning ? (
-        <>
-          <div className='scanner__container'>
-            <h1 className='scan-title'>Qr Code Scanner</h1>
-            <QrReader
-              onResult={(result, error) => {
-                if (!!result) {
-                  setData(result?.text);
-                }
-      
-                if (!!error) {
-                  console.info(error);
-                }
-              }}
-              style={{ width: '100%' }}
-              ref={videoRef}
-              constraints={{
-                facingMode: facing,
-              }}
-            />
-      
-            {/* TODO: Connect to mongoDB to display data from qr code */}
-            <p className='qrReader__data'>{data}</p>
-            <div className='qr-scanner__btns'>
-              <button className='btn' onClick={goBackHome}>Go Back</button>
-              <button className='btn' onClick={handleSwitchCamera}>Switch</button>
-              <button className='btn btn-scan' onClick={scanQRCode}>Scan</button>
-            </div>
+  const renderScanner = () => {
+    return (
+      <>
+        <div className='scanner__container'>
+          <h1 className='scan-title'>Qr Code Scanner</h1>
+          <QrReader
+            onResult={(result, error) => {
+              if (!!result) {setData(result?.text);}
+              if (!!error) {console.info(error);}
+            }}
+            style={{ width: '100%' }}
+            ref={videoRef}
+            constraints={{
+              facingMode: facing,
+            }}
+          />
+    
+          <p className='qrReader__data'>{data}</p>
+          <div className='qr-scanner__btns'>
+            <button className='btn' onClick={goBackHome}>Go Back</button>
+            <button className='btn' onClick={handleSwitchCamera}>Switch</button>
+            <button className='btn btn-scan' onClick={scanQRCode}>Scan</button>
           </div>
-        </>
-      ) : (
-        <>
-          <img className="result__img" src="{desiredEntity.image}" alt="" />
-          <div className='result__container'>
-            <fieldset>
-              <legend><span>Name:</span></legend>
-              <p>{desiredEntity.name}</p>
-            </fieldset>
-            <fieldset>
-              <legend><span>Bio:</span></legend>
-              <p>{desiredEntity.bio}</p>
-            </fieldset>
-            <fieldset>
-              <legend><span>Likes:</span></legend>
-              <p>{desiredEntity.likes}</p>
-            </fieldset>
-            <fieldset>
-              <legend><span>Dislikes:</span></legend>
-              <p>{desiredEntity.dislikes}</p>
-            </fieldset>
-            <fieldset>
-              <legend><span>Name:</span></legend>
-              <p>{desiredEntity.image}</p>
-            </fieldset>
-          </div>
-        </>
-      )}
-    </>
-  );
+        </div>
+      </>
+    );
+  }
+
+  const renderResult = () => {
+    return (
+      <>
+        <img className="result__img" src="{desiredEntity.image}" alt="" />
+        <div className='result__container'>
+          <fieldset>
+            <legend><span>Name:</span></legend>
+            {desiredEntity ? (<p>{desiredEntity.name}</p>) : (<p>No Result...</p>)}
+          </fieldset>
+          <fieldset>
+            <legend><span>Bio:</span></legend>
+            {desiredEntity ? (<p>{desiredEntity.bio}</p>) : (<p>No Result...</p>)}
+          </fieldset>
+          <fieldset>
+            <legend><span>Likes:</span></legend>
+            {desiredEntity ? (
+              <ul>
+                {desiredEntity.likes.map((like, index) => (
+                  <li key={index}>{like}</li>
+                ))}
+              </ul>
+            ) : (
+              <ul>
+                <li>No Result...</li>
+              </ul>
+            )}
+          </fieldset>
+          <fieldset>
+            <legend><span>Dislikes:</span></legend>
+            {desiredEntity ? (
+              <ul>
+                {desiredEntity.dislikes.map((dislike, index) => (
+                  <li key={index}>{dislike}</li>
+                ))}
+              </ul>
+            ) : (
+              <ul>
+                <li>No Result...</li>
+              </ul>
+            )}
+          </fieldset>
+          <fieldset>
+            <legend><span>Image Path:</span></legend>
+            {desiredEntity ? (<p>{desiredEntity.image}</p>) : (<p>No Result...</p>)}
+          </fieldset>
+        </div>
+      </>
+    );
+  }
+
+  return !scanning ? renderScanner() : renderResult();
 });
 
 export default QrScanner;
