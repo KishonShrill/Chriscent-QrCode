@@ -1,5 +1,6 @@
 {
   "rewrites":  [
     {"source": "/(.*)", "destination": "/"}
-  ]
+  ],
+  "devCommand": "concurrently \"vite --host\" \"node public/server.cjs\""
 }
