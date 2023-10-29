@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
 const Entity = mongoose.model('Entities', productSchema);
 
 // Allow CORS connection to localhost::dev & localshot::preview
-const allowedOrigins = ['https://chriscent-qr-d80swxvri-kishonshrill.vercel.app', 'https://chriscent-qr-code.vercel.app/qr-scanner'];
+const allowedOrigins = ['https://chriscent-qr-d80swxvri-kishonshrill.vercel.app', 'https://chriscent-qr-code.vercel.app/qr-scanner', 'https://chriscent-qr-code.vercel.app'];
 const corsOptions = {
   origin: function (origin, callback) {
     // Check if the origin is in the allowed origins list
