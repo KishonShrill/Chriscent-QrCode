@@ -17,7 +17,7 @@ const QrScanner = forwardRef((props, ref) => {
   const [entities, setEntities] = useState([]);
   
   // Variables needed to for string completion
-  const ENTITITY_API_URL = 'http://localhost:5000/api/entities';
+  const ENTITITY_API_URL = 'https://chriscent-qr-api.vercel.app/api/entities';
   const initialFacing = localStorage.getItem('facing') || 'environment';
   const [facing, setFacing] = useState(initialFacing); // 'user' or 'environment'
   const videoRef = ref || useRef(null);
