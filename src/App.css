@@ -1,10 +1,15 @@
 .app__container {
-  height: 100dvh;
-  width: 100%;
+  height: auto;
+  width: 320px;
   display: flex;
+  padding: 2rem 1rem 1.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .lottie {
@@ -38,6 +43,7 @@
   justify-content: center;
   color: aliceblue;
   font-size: var(--size-base);
+  border: 1px solid black;
   border-radius: 10px;
   text-decoration: none;
   background-color: rgb(178, 199, 218);
@@ -48,10 +54,19 @@
 }
 
 .btn-home {
-  margin-top: var(--size-xl);
+  margin-top: var(--size-5xl);
   padding-inline: 1rem;
 }
 
 .app__svg {
   width: var(--size-3xl);
 }
+
+/* .loading {
+  filter: blur(40px) grayscale(100%);
+}
+
+.loaded {
+  filter: blur(0) grayscale(0);
+  transition: 0.7s ease-in-out;
+} */
