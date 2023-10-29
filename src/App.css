@@ -1,0 +1,72 @@
+.app__container {
+  height: auto;
+  width: 320px;
+  display: flex;
+  padding: 2rem 1rem 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.lottie {
+  height: auto;
+}
+
+.app__onomatopoeia {
+  margin-top: var(--size-xl);
+  color: rgb(133, 151, 207);
+}
+
+.app__title {
+  color: rgb(133, 151, 207);
+  font-size: var(--size-base);
+}
+
+.app__btnContainer {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: var(--size-xxs);
+}
+
+.btn {
+  height: var(--size-5xl);
+  width: auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: aliceblue;
+  font-size: var(--size-base);
+  border: 1px solid black;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: rgb(178, 199, 218);
+}
+
+.btn:hover {
+  background-color: rgb(121, 191, 253);
+}
+
+.btn-home {
+  margin-top: var(--size-5xl);
+  padding-inline: 1rem;
+}
+
+.app__svg {
+  width: var(--size-3xl);
+}
+
+/* .loading {
+  filter: blur(40px) grayscale(100%);
+}
+
+.loaded {
+  filter: blur(0) grayscale(0);
+  transition: 0.7s ease-in-out;
+} */
