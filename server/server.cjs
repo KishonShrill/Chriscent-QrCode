@@ -28,7 +28,7 @@ const Entity = mongoose.model('Entities', productSchema);
 // Allow CORS connection to localhost::dev & localshot::preview
 
 const corsOptions = {
-  origin: true,
+  origin: 'https://chriscent-qr-code.vercel.app/qr-scanner',
   methods: ["POST", "GET"],
   credentials: true
 };
