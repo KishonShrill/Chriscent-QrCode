@@ -15,12 +15,14 @@ const QrScanner = forwardRef((props, ref) => {
   const [data, setData] = useState('No result');
   const [scanning, setScanning] = useState(false);
   const [entities, setEntities] = useState([]);
+
   
   // Variables needed to for string completion
   const ENTITITY_API_URL = 'https://chriscent-qr-api.vercel.app/api/entities';
   const initialFacing = localStorage.getItem('facing') || 'environment';
   const [facing, setFacing] = useState(initialFacing); // 'user' or 'environment'
   const videoRef = ref || useRef(null);
+
 
   const handleSwitchCamera = () => {
     const newFacing = facing === 'environment' ? 'user' : 'environment';
@@ -42,7 +44,7 @@ const QrScanner = forwardRef((props, ref) => {
   useEffect(() => {
     const fetchEntity = async () => {
       try {
-        const response = await axios.get(ENTITITY_API_URL || 'http://localhost:5000/api/entities');
+        const response = await axios.get(ENTITITY_API_URL);
         const fetchedEntities = response.data;
         setEntities(fetchedEntities);
       } catch (error) {
@@ -51,7 +53,7 @@ const QrScanner = forwardRef((props, ref) => {
     };
 
     fetchEntity();
-  });
+  }, []); // Provide an empty dependency array to fetch entities once
 
   const renderScanner = () => {
     return (
@@ -83,6 +85,18 @@ const QrScanner = forwardRef((props, ref) => {
 
   const renderResult = () => {
     const desiredEntity = entities.find(entity => entity.id === data);
+    const day = 1;
+    const month = 11;
+
+    // const currentDate = new Date();
+    // const day = currentDate.getDate();
+    // const month = currentDate.getMonth() + 1;
+
+    console.log("Day is: " + day);
+    console.log("Month is:  " + month);
+
+    const isBirthday = desiredEntity?.birthday?.month === month && desiredEntity?.birthday?.day === day;
+
     return (
       <>
         <div className='result__container'>
@@ -127,6 +141,13 @@ const QrScanner = forwardRef((props, ref) => {
             </fieldset>
           </div>
         </div>
+        {isBirthday && (
+          <section>
+            <div className='result__container'>
+              <h1>Happy Birthday LoveCake</h1>
+            </div>
+          </section>
+        )}
       </>
     );
   }

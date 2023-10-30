@@ -65,8 +65,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(/images/assets/patternpad.jpeg);
   background-color: var(--clr-primary);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-image: url(/images/assets/patternpad.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section {
+  margin-top: var(--size-3xl);
 }
 
 h1,h2,h3,

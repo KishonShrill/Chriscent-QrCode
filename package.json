@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "publicdev": "concurrently \"vite --host\" \"node dist/server.cjs\"",
+    "publicdev": "vite --host",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "concurrently \"vite preview\" \"node dist/server.cjs\"",
