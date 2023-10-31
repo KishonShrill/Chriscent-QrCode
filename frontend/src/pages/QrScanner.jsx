@@ -15,12 +15,14 @@ const QrScanner = forwardRef((props, ref) => {
   const [data, setData] = useState('No result');
   const [scanning, setScanning] = useState(false);
   const [entities, setEntities] = useState([]);
+
   
   // Variables needed to for string completion
   const ENTITITY_API_URL = 'https://chriscent-qr-api.vercel.app/api/entities';
   const initialFacing = localStorage.getItem('facing') || 'environment';
   const [facing, setFacing] = useState(initialFacing); // 'user' or 'environment'
   const videoRef = ref || useRef(null);
+
 
   const handleSwitchCamera = () => {
     const newFacing = facing === 'environment' ? 'user' : 'environment';
@@ -51,7 +53,7 @@ const QrScanner = forwardRef((props, ref) => {
     };
 
     fetchEntity();
-  });
+  }, []); // Provide an empty dependency array to fetch entities once
 
   const renderScanner = () => {
     return (
@@ -83,6 +85,18 @@ const QrScanner = forwardRef((props, ref) => {
 
   const renderResult = () => {
     const desiredEntity = entities.find(entity => entity.id === data);
+    const day = 1;
+    const month = 11;
+
+    // const currentDate = new Date();
+    // const day = currentDate.getDate();
+    // const month = currentDate.getMonth() + 1;
+
+    console.log("Day is: " + day);
+    console.log("Month is:  " + month);
+
+    const isBirthday = desiredEntity?.birthday?.month === month && desiredEntity?.birthday?.day === day;
+
     return (
       <>
         <div className='result__container'>
@@ -127,6 +141,41 @@ const QrScanner = forwardRef((props, ref) => {
             </fieldset>
           </div>
         </div>
+        {isBirthday && (
+          <section>
+            <div className='birthday-wrapper'>
+              <h1 className='birthday__title'>Happy Birthday LoveCake</h1>
+              <div className='birthday__picture-wrapper'><img className='birthday__picture' src="/images/20231028_175457.jpg" alt="" /></div>
+              <p>hi there!! i'm LoveCake ^o^</p>
+              <p>💖 11 / 01 / 01 💖</p>
+              <p>I tend to hop around when talking about a particular subject that interests me 😁 especially if it's about (GoSe) 👀</p>
+              <br />
+              <p>✨ I like a looooot of things &#62;.&#60; ⭐</p>
+              <p>watching horror movies 🍿🎥</p>
+              <p>reading books 📚🤓</p>
+              <p>eating chips 🍴🤤</p>
+              <p>french fries 🍟🤤</p>
+              <p>rabbits 🐇</p>
+              <p>rich 🤑💵</p>
+              <p>spring season ☂️⛱️ </p>
+              <p>swimming 🏊‍♂️🥽</p>
+              <br />
+              <p>😒 If there are things I dislike, it'be 😤</p>
+              <p>noisy while im sleeping 😴😫</p>
+              <p>cussing 🤬</p>
+              <p>gossip mongers 🗨️</p>
+              <p>pathological liars 🗣️</p>
+              <p>bad people 🙊🙅‍♂️</p>
+              <p>no signal 📶🚫</p>
+              <p>🤷‍♂️ penis shaped keychain 🤷‍♂️</p>
+              <p>overpriced goods 🤑💹</p>
+              <p>people who violate animals 🐈🔫</p>
+              <p>🙉🙈🙊</p>
+              <br />
+              <h1 className='birthday__footer'>More Birthday's to come</h1>
+            </div>
+          </section>
+        )}
       </>
     );
   }
