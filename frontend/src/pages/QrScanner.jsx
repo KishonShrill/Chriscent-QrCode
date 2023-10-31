@@ -85,12 +85,12 @@ const QrScanner = forwardRef((props, ref) => {
 
   const renderResult = () => {
     const desiredEntity = entities.find(entity => entity.id === data);
-    const day = 1;
-    const month = 11;
+    // const day = 1;
+    // const month = 11;
 
-    // const currentDate = new Date();
-    // const day = currentDate.getDate();
-    // const month = currentDate.getMonth() + 1;
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1;
 
     console.log("Day is: " + day);
     console.log("Month is:  " + month);
