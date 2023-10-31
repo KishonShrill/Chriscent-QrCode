@@ -143,8 +143,36 @@ const QrScanner = forwardRef((props, ref) => {
         </div>
         {isBirthday && (
           <section>
-            <div className='result__container'>
-              <h1>Happy Birthday LoveCake</h1>
+            <div className='birthday-wrapper'>
+              <h1 className='birthday__title'>Happy Birthday LoveCake</h1>
+              <div className='birthday__picture-wrapper'><img className='birthday__picture' src="/images/20231028_175457.jpg" alt="" /></div>
+              <p>hi there!! i'm LoveCake ^o^</p>
+              <p>💖 11 / 01 / 01 💖</p>
+              <p>I tend to hop around when talking about a particular subject that interests me 😁 especially if it's about (GoSe) 👀</p>
+              <br />
+              <p>✨ I like a looooot of things &#62;.&#60; ⭐</p>
+              <p>watching horror movies 🍿🎥</p>
+              <p>reading books 📚🤓</p>
+              <p>eating chips 🍴🤤</p>
+              <p>french fries 🍟🤤</p>
+              <p>rabbits 🐇</p>
+              <p>rich 🤑💵</p>
+              <p>spring season ☂️⛱️ </p>
+              <p>swimming 🏊‍♂️🥽</p>
+              <br />
+              <p>😒 If there are things I dislike, it'be 😤</p>
+              <p>noisy while im sleeping 😴😫</p>
+              <p>cussing 🤬</p>
+              <p>gossip mongers 🗨️</p>
+              <p>pathological liars 🗣️</p>
+              <p>bad people 🙊🙅‍♂️</p>
+              <p>no signal 📶🚫</p>
+              <p>🤷‍♂️ penis shaped keychain 🤷‍♂️</p>
+              <p>overpriced goods 🤑💹</p>
+              <p>people who violate animals 🐈🔫</p>
+              <p>people who points stuff at you 🙉🙈🙊</p>
+              <br />
+              <h1 className='birthday__footer'>More Birthday's to come</h1>
             </div>
           </section>
         )}

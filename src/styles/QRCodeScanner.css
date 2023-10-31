@@ -106,6 +106,87 @@ legend span {
   top: 8px;
 }
 
+
+/* Birthday Wrapper, Containers, and Elements */
+.birthday-wrapper {
+  position: relative;
+  width: 90dvw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow:
+  0px 2.6px 3.1px rgba(0, 0, 0, 0.125),
+  0px 21px 25px rgba(0, 0, 0, 0.25)
+  ;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.birthday-wrapper p:nth-of-type(1) {
+  padding-inline: 0.5rem;
+  background-color: pink;
+}
+
+.birthday-wrapper p:nth-of-type(3) {
+  width: 30ch;
+  text-align: center;
+  font-size: 14px;
+}
+
+.birthday-wrapper p:nth-of-type(4) {
+  margin-bottom: 0.5rem;
+  background-color: rgb(192, 248, 255);
+}
+
+.birthday-wrapper p:nth-of-type(n+5):nth-of-type(-n+12) {
+  text-align: center;
+  font-size: 14px;
+}
+
+.birthday-wrapper p:nth-of-type(13) {
+  margin-bottom: 0.5rem;
+  background-color: rgb(253, 192, 255);
+}
+
+.birthday-wrapper p:nth-of-type(n+14):nth-of-type(-n+23) {
+  text-align: center;
+  font-size: 14px;
+}
+
+.birthday__title {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+  background-color: rgb(56, 48, 48);
+  color: pink;
+}
+
+.birthday__picture-wrapper {
+  width: 100%;
+  padding: 1rem;
+}
+
+.birthday__picture {
+  width: 100%;
+  padding: 1rem;
+  border: 1px dashed black
+}
+
+
+.birthday__footer {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0 0 20px 20px;
+  text-align: center;
+  background-color: rgb(56, 48, 48);
+  color: pink;
+}
+
+
 @media (min-width: 400px) {
   .result__likesDislikes {
     flex-direction: row;
