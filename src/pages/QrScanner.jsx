@@ -170,7 +170,7 @@ const QrScanner = forwardRef((props, ref) => {
               <p>🤷‍♂️ penis shaped keychain 🤷‍♂️</p>
               <p>overpriced goods 🤑💹</p>
               <p>people who violate animals 🐈🔫</p>
-              <p>people who points stuff at you 🙉🙈🙊</p>
+              <p>🙉🙈🙊</p>
               <br />
               <h1 className='birthday__footer'>More Birthday's to come</h1>
             </div>
