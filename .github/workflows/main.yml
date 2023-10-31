@@ -21,7 +21,17 @@ jobs:
     - name: Copy Modified Files to Frontend
       run: |
         for file in ${{ steps.modified-files.outputs.files }}; do
-          if [[ "$file" == src/* || "$file" == public/* ]]; then
+          if [[ "$file" == src/* ||
+                "$file" == src/**/* ||
+                "$file" == src/pages/**/* ||
+                "$file" == src/assets/**/* ||
+                "$file" == src/styles/**/* ||
+                "$file" == src/components/**/* ||
+                "$file" == public/* ||
+                "$file" == public/**/* ||
+                "$file" == public/images/**/* ||
+                "$file" == public/images/assets/**/* ||
+                "$file" == public/images/profiles/**/* ]]; then
             cp "$file" "frontend/$file"
           fi
         done
